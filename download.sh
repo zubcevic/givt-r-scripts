@@ -27,6 +27,6 @@ echo $guid
 orgId=$(cat collectgroup.json|sed 's/{/\n/g;s/,/\n/g'|grep OrgId|sed 's/:/ /g; s/"/ /g'|awk '{print $2}')
 echo $orgId
 
-#CollectGroupId: 01b6e7ef-2bbe-4bf1-a85f-a4e95856bf48
+# Download csv data
 curl -s -X GET -H "Content-Type: application/json" -H "authorization: Bearer $access_token" -H "CollectGroupId: $guid" https://api.givtapp.net/api/v2/organisations/$orgId/collectgroups/$guid/payments/export?startDate=2021-11-04T14:32:47.238Z\&endDate=2021-11-11T14:32:47.238Z -o sample.csv
 cat sample.csv
