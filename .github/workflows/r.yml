@@ -19,7 +19,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        r-version: ['3.6.3', '4.1.1']
+        r-version: ['4.1.1']
 
     steps:
       - uses: actions/checkout@v2
@@ -28,5 +28,4 @@ jobs:
         with:
           r-version: ${{ matrix.r-version }}
       - name: Check
-        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
-        shell: echo sample.csv | Rscript givt-sample.r
+        shell: echo sample.csv | RScript givt-sample.r
