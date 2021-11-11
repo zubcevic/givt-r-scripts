@@ -4,8 +4,9 @@ This repository contains some scripts to analyze data that is exported from the 
 
 ## Prerequisites
 
-Install R from [The R project](https://www.r-project.org). Tested with version 4.1.2 on MacOS, 11-11-2021.
-Download a sample .csv export from the [GIVT dashboard](https://cloud.givtapp.net/#/).
++ Install R from [The R project](https://www.r-project.org). 
++ Tested with version 4.1.2 on MacOS, 11-11-2021.
++ Download a sample .csv export from the [GIVT dashboard](https://cloud.givtapp.net/#/).
 
 ## Contents
 
@@ -14,5 +15,5 @@ Download a sample .csv export from the [GIVT dashboard](https://cloud.givtapp.ne
 
 ## Example usage
 
-    Rscript givt-sample.r
+    echo sample.csv | Rscript givt-sample.r
 

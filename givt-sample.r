@@ -4,8 +4,8 @@ source("givt-functions.r")
 # Define global variables
 var_Main_label <<- "Collectes via GIVT"
 var_Subtitle_label <<- "Bruto opbrengst per "
-var_Collecte1_label <<- "Kerk"
-var_Collecte2_label <<- "Diaconie"
+var_Collecte1_label <<- "1e Collecte"
+var_Collecte2_label <<- "2e Collecte"
 var_X_axis_label <<- "Maand"
 var_Y_axis_label <<- "Bedrag in EUR"
 var_Collecte1_color <<- "green"
