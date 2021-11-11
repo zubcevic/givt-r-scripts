@@ -1,6 +1,8 @@
 # Load required library packages from specified CRAN repo
 if(!require(tidyverse)) install.packages("tidyverse",repos = "https://mirror.lyrahosting.com/CRAN/")
 if(!require(dplyr)) install.packages("dplyr",repos = "https://mirror.lyrahosting.com/CRAN/")
+library(tidyverse)
+library(dplyr)
 
 givts_per_periode <- function(givt_all,periode) {
 
