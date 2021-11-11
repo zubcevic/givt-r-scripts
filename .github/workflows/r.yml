@@ -28,4 +28,5 @@ jobs:
         with:
           r-version: ${{ matrix.r-version }}
       - name: Check
-        run: cat sample.csv | RScript givt-sample.r
+        run: echo sample.csv | RScript givt-sample.r
+        shell: bash
