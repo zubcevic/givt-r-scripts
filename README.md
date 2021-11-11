@@ -1,3 +1,4 @@
+[![R](https://github.com/zubcevic/givt-r-scripts/actions/workflows/r.yml/badge.svg)](https://github.com/zubcevic/givt-r-scripts/actions/workflows/r.yml)
 # R scripts for analyzing GIVT data
 
 This repository contains some scripts to analyze data that is exported from the GIVT dashboard.
