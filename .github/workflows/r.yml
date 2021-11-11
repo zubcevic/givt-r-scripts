@@ -28,4 +28,5 @@ jobs:
         with:
           r-version: ${{ matrix.r-version }}
       - name: Check
-        shell: echo sample.csv | RScript givt-sample.r
+        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
+        shell: Rscript {0}
