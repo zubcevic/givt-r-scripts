@@ -17,3 +17,4 @@ This repository contains some scripts to analyze data that is exported from the 
 
     echo sample.csv | Rscript givt-sample.r
 
+![Sample plot of GIVT data](givt-sample.png "GIVT plot")
