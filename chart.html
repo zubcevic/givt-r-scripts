@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+
+<script src="https://d3js.org/d3.v4.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
+<style>
+  table {
+      border-collapse: collapse;
+      border: 2px black solid;
+      font: 12px sans-serif;
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      width: 100%;
+  }
+tr:first-child {
+padding-top: 12px;
+padding-bottom: 12px;
+text-align: left;
+background-color: #4CAF50;
+color: white;
+background-color: #4CAF50;
+}
+
+td {
+  border: 1px black solid;
+  padding: 5px;
+  border: 1px solid #ddd;
+  padding: 8px;
+  }
+
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+</style>
+</head>
+<body>
+
+<div id="allgrouped"><div id="collecte1"></div><div id="collecte2"></div>
+
+<script>
+
+var data = null;
+var filteredData = null;
+
+var margin = {top: 30, right: 30, bottom: 70, left: 60},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+var svg1 = d3.select("#collecte1")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+var svg2 = d3.select("#collecte2")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+
+d3.text("https://raw.githubusercontent.com/zubcevic/givt-r-scripts/main/sample.csv", function(raw) {
+
+  var dsv = d3.dsvFormat(';')
+  data = dsv.parse(raw);
+  collecte1 = data.filter(function(row) {
+        return row['Toewijzing'] == '1e Collecte';
+    });
+  collecte2 = data.filter(function(row) {
+        return row['Toewijzing'] == '2e Collecte';
+    });
+  //alert(Object.keys(data));
+  //alert(data.columns);
+  //alert(data);
+  
+  drawGraph(svg1,collecte1,'blue');
+  drawGraph(svg1,collecte2,'red');
+  d3.select("body").append("table").selectAll("tr").data(dsv.parseRows(raw)).enter().append("tr").selectAll("td").data(function(d) { return d; }).enter().append("td").text(function(d) { return d; });
+
+});
+
+function drawGraph(svg,filteredData, color) {
+
+var x = d3.scaleBand()
+  .range([ 0, width ])
+  .domain(filteredData.map(function(d) { return d['Datum begin']; }))
+  .padding(0.2);
+svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x))
+  .selectAll("text")
+    .attr("transform", "translate(-10,0)rotate(-45)")
+    .style("text-anchor", "end");
+
+var y = d3.scaleLinear()
+  .domain([0, 100])
+  .range([ height, 0]);
+svg.append("g")
+  .call(d3.axisLeft(y));
+
+svg.selectAll("mybar")
+  .data(filteredData)
+  .enter()
+  .append("rect")
+    .attr("x", function(d) { return x(d['Datum begin']); })
+    .attr("y", function(d) { return y(d.Brutobedrag); })
+    .attr("width", x.bandwidth())
+    .attr("height", function(d) { return height - y(d.Brutobedrag); })
+    .attr("fill", color);
+}
+
+
+</script>
+
+</body>

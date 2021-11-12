@@ -29,3 +29,11 @@ Download the data. Make sure you change the script with the required time frame 
     chmod u+x download.sh
     dep_username=xxxx dep_password=yyyy ./download.sh
     echo sample.csv | Rscript givt-sample.r
+
+## Other options 
+
+### JavaScript using data to make tables and graphs
+
+It would be nice if GIVT would add more graphical reporting options in its dashboard. Several options are possible.
+The [chart.html](chart.html) shows a simple table and a simple graph which can be used to show data based on the sample.csv export file.
+
