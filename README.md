@@ -37,3 +37,5 @@ Download the data. Make sure you change the script with the required time frame 
 It would be nice if GIVT would add more graphical reporting options in its dashboard. Several options are possible.
 The [chart.html](chart.html) shows a simple table and a simple graph which can be used to show data based on the sample.csv export file.
 
+![Sample plot of html javascript](chart.png "GIVT plot html js")
+
