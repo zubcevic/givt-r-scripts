@@ -28,5 +28,5 @@ orgId=$(cat collectgroup.json|sed 's/{/\n/g;s/,/\n/g'|grep OrgId|sed 's/:/ /g; s
 echo $orgId
 
 # Download csv data
-curl -s -X GET -H "Content-Type: application/json" -H "authorization: Bearer $access_token" -H "CollectGroupId: $guid" https://api.givtapp.net/api/v2/organisations/$orgId/collectgroups/$guid/payments/export?startDate=2021-11-04T14:32:47.238Z\&endDate=2021-11-11T14:32:47.238Z -o sample.csv
+curl -s -X GET -H "Content-Type: application/json" -H "Accept-Language: nl-NL" -H "authorization: Bearer $access_token" -H "CollectGroupId: $guid" https://api.givtapp.net/api/v2/organisations/$orgId/collectgroups/$guid/payments/export?startDate=2021-11-04T14:32:47.238Z\&endDate=2021-11-11T14:32:47.238Z -o sample.csv
 cat sample.csv

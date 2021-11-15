@@ -10,6 +10,7 @@ This repository contains some scripts to analyze data that is exported from the 
 + Download a sample .csv export from the [GIVT dashboard](https://cloud.givtapp.net/#/).
     + manually using the web console
     + or using [bash script](download.sh) that uses the GIVT API
+    + or using [python script](download.py) that uses the GIVT API
 
 ## Contents
 
@@ -28,6 +29,10 @@ Download the data. Make sure you change the script with the required time frame 
 
     chmod u+x download.sh
     dep_username=xxxx dep_password=yyyy ./download.sh
+    echo sample.csv | Rscript givt-sample.r
+
+    pip3 install request
+    dep_username=xxxx dep_password=yyyy python3 download.py
     echo sample.csv | Rscript givt-sample.r
 
 ## Other options 
