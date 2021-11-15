@@ -1,12 +1,22 @@
 #!/usr/bin/env python3
+"""Download script for GIVT reports.
+
+This script can be used to download csv data from GIVT.
+
+Example:
+
+    $ python3 download.py
+
+.. _Google Python Style Guide:
+   http://google.github.io/styleguide/pyguide.html
+
+"""
 
 import os
-import requests
 import json
 import logging
-import contextlib
 from http.client import HTTPConnection  # py3
-
+import requests
 
 def debug_requests_on():
     '''Switches on logging of the requests module.'''
@@ -19,6 +29,7 @@ def debug_requests_on():
 
 
 # debug_requests_on()
+GIVT_API_URL = 'https://api.givtapp.net'
 
 request_headers = {'User-Agent': 'Mozilla/5.0', 'Accept': 'application/json'}
 login_data = {
@@ -26,8 +37,8 @@ login_data = {
     'userName': os.environ.get('dep_username'),
     'password': os.environ.get('dep_password')
 }
-login_url = 'https://api.givtapp.net/oauth2/token'
-login_response = requests.post(login_url,
+LOGIN_URL = GIVT_API_URL + '/oauth2/token'
+login_response = requests.post(LOGIN_URL,
                                data=login_data,
                                headers=request_headers,
                                allow_redirects=True)
@@ -46,8 +57,8 @@ request_headers = {
     'Accept': 'application/json',
     'Authorization': 'Bearer ' + access_token
 }
-getorg_url = 'https://api.givtapp.net/api/CollectGroupView/CollectGroup'
-getorg_response = requests.get(getorg_url,
+GETORG_URL = GIVT_API_URL + '/api/CollectGroupView/CollectGroup'
+getorg_response = requests.get(GETORG_URL,
                                headers=request_headers,
                                allow_redirects=True)
 
@@ -68,15 +79,14 @@ request_parameters = {
     'startDate': '2021-11-04T14:32:47.238Z',
     'endDate': '2021-11-11T14:32:47.238Z'
 }
-download_url = 'https://api.givtapp.net/api/v2/organisations/' \
+download_url = GIVT_API_URL + '/api/v2/organisations/' \
     + org_id + '/collectgroups/'+guid+'/payments/export'
 download_response = requests.get(download_url,
                                  params=request_parameters,
                                  headers=request_headers,
                                  allow_redirects=True)
 
-csv_file = open('sample.csv', 'w')
-csv_file.write(download_response.content.decode('UTF-8'))
-csv_file.close()
+with open('sample.csv', 'w', encoding='UTF-8') as csv_file:
+    csv_file.write(download_response.content.decode('UTF-8'))
 
 print(download_response.content.decode('UTF-8'))
