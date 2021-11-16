@@ -1,0 +1,5 @@
+[MASTER]
+ignore=third_party
+disable=C0114 # missing-module-docstring
+[MESSAGES CONTROL]
+disable=W
