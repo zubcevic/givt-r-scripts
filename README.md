@@ -31,7 +31,7 @@ Download the data. Make sure you change the script with the required time frame 
     dep_username=xxxx dep_password=yyyy ./download.sh
     echo sample.csv | Rscript givt-sample.r
 
-    pip3 install request
+    pip3 install -r requirements.txt
     dep_username=xxxx dep_password=yyyy python3 download.py
     echo sample.csv | Rscript givt-sample.r
 

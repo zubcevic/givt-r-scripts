@@ -1,0 +1,4 @@
+# Required pip modules
+mock
+pytest
+requests
