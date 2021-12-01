@@ -5,8 +5,8 @@ library(tidyverse)
 start_date = "2020-03-01"
 end_date = "2022-01-01"
 
-#covid_feed <- "https://lcps.nu/wp-content/uploads/covid-19-datafeed.csv"
-#download.file(covid_feed, "covid19.csv")
+covid_feed <- "https://lcps.nu/wp-content/uploads/covid-19-datafeed.csv"
+download.file(covid_feed, "covid19.csv")
 
 covid <-read.table("covid19.csv",header=T,sep=",")
 covid$day <- as.POSIXct(covid$Datum, format="%d-%m-%Y")
@@ -45,3 +45,4 @@ covid_plot_2 <- function(covid) {
 
 #covid_plot_1(covid)
 covid_plot_2(covid)
+
