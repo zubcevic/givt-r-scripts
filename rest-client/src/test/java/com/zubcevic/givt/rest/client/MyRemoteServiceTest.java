@@ -13,19 +13,16 @@ public class MyRemoteServiceTest {
 
     @Inject
     @RestClient
-    MyRemoteService myRemoteService;
+    GivtService myRemoteService;
 
    // @Test
     public void testExtensionsRestClientEndpoint() {
-        Set<MyRemoteService.Extension> restClientExtensions = myRemoteService.getById("io.quarkus:quarkus-rest-client");
+        Set<GivtService.CollectGroup> restClientExtensions = myRemoteService.getCollectGroup();
 
         Assertions.assertEquals(1, restClientExtensions.size());
-        for (MyRemoteService.Extension extension : restClientExtensions) {
-            Assertions.assertEquals("io.quarkus:quarkus-rest-client", extension.id);
-            Assertions.assertEquals("REST Client", extension.name);
-            Assertions.assertEquals("REST Client", extension.shortName);
-            Assertions.assertTrue(extension.keywords.size() > 1);
-            Assertions.assertTrue(extension.keywords.contains("rest-client"));
+        for (GivtService.CollectGroup extension : restClientExtensions) {
+            Assertions.assertEquals("io.quarkus:quarkus-rest-client", extension.OrgId);
+            Assertions.assertEquals("REST Client", extension.Name);
         }
     }
 }

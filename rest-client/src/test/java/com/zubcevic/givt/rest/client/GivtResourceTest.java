@@ -22,9 +22,7 @@ public class GivtResourceTest {
              .statusCode(200)
              .body(
                  "$.size()", is(1), // array with 1 json doc
-                 "[0].name", is("REST Client"), //first doc
-                 "[0].keywords.size()", greaterThan(1), // sub array with more characters
-                 "[0].keywords", hasItem("rest-client"));
+                 "[0].Name", is("PKN Nieuwegein Noord") );
     }
 
 }
